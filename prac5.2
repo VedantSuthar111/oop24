@@ -1,0 +1,62 @@
+#include<iostream>
+#define pi 3.148
+using namespace std;
+
+class circle
+{
+float radius;
+static int c;
+public:
+circle()
+{
+    radius=1;
+    c++;
+}
+circle(float r)
+{
+    radius=r;
+    c++;
+}
+circle(circle &c1)
+{
+    radius=c1.radius;
+    c++;
+}
+void totalobj()
+{
+    cout<<"Total Active Object:"<<c<<endl;
+
+}
+void putData()
+{
+    float area;
+    area=pi*radius*radius;
+    cout<<"Your Circle with radius:"<<radius<<"has Area:"<<area<<endl;
+
+}
+~circle()
+{
+    cout<<"One Object is Deleted";
+    c--;
+    totalobj();
+}
+
+
+};
+int circle :: c=0;
+int main()
+{
+circle *c1;
+c1=new circle();
+circle *c2;
+c2=new circle(20.00);
+circle *c3;
+c3=new circle(*c1);
+c1->putData();
+c2->putData();
+c3->putData();
+delete c1;
+delete c2;
+delete c3;
+return 0;
+}
